@@ -1,0 +1,49 @@
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="mp_search_transfert_revendication_view_search">
+            <field name="name">Transaction en cours</field>
+            <field name="model">mp.search_transfert_revendication</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="token_transfert"/>
+                </search>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="mp_search_transfert_revendication_view_form">
+            <field name="name">Transaction en cours</field>
+            <field name="model">mp.search_transfert_revendication</field>
+            <field name="arch" type="xml">
+                <form string="Rechercher un transfert">
+                    <group>
+                        <group>
+                            <field name="token_transfert" required="1"/>
+                            <field name="nom_expediteur" required="1"/>
+                        </group>
+                        <group>
+
+                        </group>
+                    </group>
+                    <footer>
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                        ou
+                        <button string="Recherher" name="search_transfert" type="object" class="oe_highlight" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="mp_search_transfert_revendication_action" model="ir.actions.act_window">
+            <field name="name">Transaction en cours</field>
+            <field name="res_model">mp.search_transfert_revendication</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="mp_search_transfert_revendication_view_form"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</openerp>

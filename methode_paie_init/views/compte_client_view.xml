@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+        <record model="ir.ui.view" id="view_mp_compte_client_filter">
+            <field name="name">Compte client</field>
+            <field name="model">mp.compte_client</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="id_client"/>
+                    <field name="num_compte"/>
+                </search>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="mp_compte_client_view_tree">
+            <field name="name">Compte cleint</field>
+            <field name="model">mp.compte_client</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="id_client"/>
+                    <field name="num_compte"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="mp_compte_client_view_form">
+            <field name="name">Compte client</field>
+            <field name="model">mp.compte_client</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group col='4' colspan="4">
+                            <field name="name" readonly="1"/>
+                            <field name="id_client" readonly="1" required="1"/>
+                            <field name="num_compte" readonly="1"/>
+                            <field name="date" readonly="1"/>
+                        </group>
+                        <notebook>
+                            <page string="Information sur les transaction du compte">
+                                <group col='4' colspan="4">
+                                    <field name="debit" readonly="1"/>
+                                    <field name="credit" readonly="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+        <record model="ir.actions.act_window" id="mp_compte_client_model_action">
+            <field name="name">Compte cleint</field>
+            <field name="res_model">mp.compte_client</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+</odoo>

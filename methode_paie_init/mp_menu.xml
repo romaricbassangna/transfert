@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <data>
+            <menuitem id="mp_menu_principal" name="Transfert d'argent" sequence="0"/>
+
+
+            <menuitem id="mp_menu_transfert" name="Transfert" parent="mp_menu_principal" sequence="0" />
+
+            <menuitem id="mp_menu_transfert_envoie"
+                        name="Envoie"
+                        parent="mp_menu_transfert"
+                        action="mp_transfert_model_action"
+                        sequence="0"/>
+            <menuitem id="mp_menu_recherche"
+                        name="Retrait"
+                        parent="mp_menu_transfert"
+                        action="mp_search_transfert_action"
+                        sequence="1"/>
+
+            <menuitem id="mp_menu_transfert_historique"
+                        name="Historique des transferts"
+                        parent="mp_menu_transfert"
+                        action="mp_historique_transfert_retrait_model_action"
+                        sequence="2"/>
+
+            <menuitem id="mp_menu_mp_search_transfert_revendication"
+                        name="Revendication"
+                        parent="mp_menu_transfert"
+                        action="mp_search_transfert_revendication_action"
+                        sequence="3"/>
+
+            <menuitem id="mp_menu_client" name="Client" parent="mp_menu_principal" action="mp_client_model_action" sequence="1" />
+
+            <menuitem id="mp_menu_compte_client" name="Compte client" parent="mp_menu_principal" action="mp_compte_client_model_action" sequence="2" />
+
+            <menuitem id="mp_menu_configuration" name="Configuration" parent="mp_menu_principal" sequence="3" />
+
+            <menuitem id="mp_menu_config_ville"
+                        name="Ville"
+                        parent="mp_menu_configuration"
+                        action="ville_model_action"
+                        sequence="0"/>
+
+            <menuitem id="mp_menu_config_agence"
+                        name="Agence"
+                        parent="mp_menu_configuration"
+                        action="mp_agence_model_action"
+                        sequence="1"/>
+
+            <menuitem id="mp_menu_config_tarif"
+                        name="Tarifs"
+                        parent="mp_menu_configuration"
+                        action="mp_tarif_model_action"
+                        sequence="3"/>
+
+            <menuitem id="mp_menu_config_piece_id"
+                        name="Type de pièce d'identification"
+                        parent="mp_menu_configuration"
+                        action="piece_id_model_action"
+                        sequence="4"/>
+
+            <menuitem id="mp_menu_config_comptabilite" name="Comptabilité" parent="mp_menu_configuration" sequence="5"/>
+
+                <menuitem id="mp_menu_config_taxes"
+                        name="Taxes"
+                        parent="mp_menu_config_comptabilite"
+                        action="mp_taxe_model_action"
+                        sequence="0"/>
+                <menuitem id="mp_menu_config_compte"
+                        name="Compte"
+                        parent="mp_menu_config_comptabilite"
+                        action="mp_compte_model_action"
+                        sequence="1"/>
+        </data>
+</odoo>

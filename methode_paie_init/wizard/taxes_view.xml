@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+        <record model="ir.ui.view" id="view_mp_taxe_filter">
+            <field name="name">Taxe</field>
+            <field name="model">mp.taxe</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="valeur_taxe"/>
+                    <field name="id_pays"/>
+                    <field name="active"/>
+                    <field name="mode_calcul"/>
+                </search>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="mp_taxe_view_tree">
+            <field name="name">Taxe</field>
+            <field name="model">mp.taxe</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="valeur_taxe"/>
+                    <field name="id_pays"/>
+                    <field name="active"/>
+                    <field name="mode_calcul"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="mp_taxe_view_form">
+            <field name="name">Taxe</field>
+            <field name="model">mp.taxe</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group col='4' colspan="4">
+                            <field name="name" required="1"/>
+                            <field name="valeur_taxe" required="1"/>
+                            <field name="mode_calcul" required="1"/>
+                            <field name="active"/>
+                            <field name="id_pays" required="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="mp_taxe_model_action">
+            <field name="name">Taxe</field>
+            <field name="res_model">mp.taxe</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+</odoo>

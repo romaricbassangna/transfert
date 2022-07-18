@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+        <record model="ir.ui.view" id="view_mp_tarif_filter">
+            <field name="name">Tarif</field>
+            <field name="model">mp.tarif</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="commission"/>
+                    <field name="montant_min"/>
+                    <field name="montant_max"/>
+                    <field name="id_pays_depart"/>
+                    <field name="id_pays_arrive"/>
+                    <field name="mode_calcul"/>
+                </search>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="mp_tarif_view_tree">
+            <field name="name">Tarif</field>
+            <field name="model">mp.tarif</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="commission"/>
+                    <field name="montant_min"/>
+                    <field name="montant_max"/>
+                    <field name="id_pays_depart"/>
+                    <field name="id_pays_arrive"/>
+                    <field name="active"/>
+                    <field name="mode_calcul"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="mp_tarif_view_form">
+            <field name="name">Tarif</field>
+            <field name="model">mp.tarif</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group col='4' colspan="4">
+                            <field name="name" required="1"/>
+                            <field name="id_pays_arrive" required="1"/>
+                            <field name="active"/>
+                            <field name="id_pays_depart" required="1"/>
+                        </group>
+                        <group col='4' colspan="4">
+                            <field name="mode_calcul" required="1"/>
+                            <field name="montant_min" required="1"/>
+                            <field name="commission" required="1"/>
+                            <field name="montant_max" required="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="mp_tarif_model_action">
+            <field name="name">Tarif</field>
+            <field name="res_model">mp.tarif</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+</odoo>

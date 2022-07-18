@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+        <record model="ir.ui.view" id="view_mp_transfert_filter">
+            <field name="name">Transfert</field>
+            <field name="model">mp.transfert</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="montant"/>
+                    <field name="id_tarif"/>
+                    <field name="commission"/>
+                    <field name="id_ville_depart"/>
+                    <field name="id_ville_arrive"/>
+                    <field name="id_expediteur"/>
+                    <field name="id_beneficiaire"/>
+                    <field name="date_transfert" />
+                    <field name="date_retrait"/>
+                </search>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="mp_transfert_view_tree">
+            <field name="name">Transfert</field>
+            <field name="model">mp.transfert</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="montant"/>
+                    <field name="commission"/>
+                    <field name="id_ville_depart"/>
+                    <field name="id_ville_arrive"/>
+                    <field name="date_transfert" />
+                    <field name="date_retrait"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="mp_transfert_view_form">
+            <field name="name">Transfert</field>
+            <field name="model">mp.transfert</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <header>
+                            <button name="envoyer" string="Envoyer" type='object' class="btn-success" statut_actuels="inentame"
+                                                            confirm=" Cliquer sur OK pour confirmer !"  attrs="{'invisible': [('state1', 'in', ['envoye', 'retirer'])]}" />
+
+                            <button name="annuler_envoi" string="Annuler l'envoi" type='object' class="btn-danger" statut_actuels="en_cour"
+                                                            confirm=" Cliquer sur OK pour confirmer !" attrs="{'invisible': [('state1', 'in', ['draft', 'retirer'])]}"/>
+
+                            <button name="retrait" string="Retirer" type='object' class="btn-success" statut_actuels="en_cour"
+                                                            confirm=" Cliquer sur OK pour confirmer !" attrs="{'invisible': [('state1', 'in', ['draft','retirer'])]}"/>
+
+                            <field name="state1" widget="statusbar" statusbar_visible="draft,envoye,retirer"/>
+                        </header>
+                            <group  col='4' colspan="4">
+                                <field name="name" readonly="1"/>
+                                <field name="id_ville_arrive" required="1" attrs="{'readonly':[('state1','in',['envoye','retirer'])]}" options="{'no_create': True}"/>
+                                <field name="id_agence_depart" readonly="1" options="{'no_create': True}"/>
+                                <field name="id_ville_depart" readonly="1" options="{'no_create': True,'no_create_edit': True}"/>
+                                <field name="id_agence_arrive" required="1" domain="[('id_ville', '=', id_ville_arrive)]" attrs="{'readonly':[('state1','in',['envoye','retirer'])]}" options="{'no_create': True}"/>
+                            </group>
+                            <group col='4' colspan="4" string="Information sur le montant">
+                                <field name="montant" required="1" attrs="{'readonly':[('state1','in',['envoye','retirer'])]}"/>
+                                <field name="id_tarif" readonly="1"/>
+                                <field name="commission" readonly="1"/>
+                                <field name="montant_total" readonly="1"/>
+                            </group>
+
+                            <group  col="1" colspan="1" string="Inforamtion clients">
+                                <group col="4" colspan="4" string="Information expédieur" >
+                                    <field name="id_expediteur" required="1" attrs="{'readonly':[('state1','in',['envoye','retirer'])]}"/>
+                                    <field name="prenom_expediteur" required="1" attrs="{'readonly':[('state1','in',['envoye','retirer'])]}"/>
+                                    <field name="Sexe_expediteur" required="1" attrs="{'readonly':[('state1','in',['envoye','retirer'])]}"/>
+                                    <field name="nationatile_expediteur" required="1" attrs="{'readonly':[('state1','in',['envoye','retirer'])]}" options="{'no_create': True}"/>
+                                    <field name="id_piece_iden_expediteur" attrs="{'readonly':[('state1','in',['envoye','retirer'])]}"/>
+                                    <field name="tel_expediteur" required="1" attrs="{'readonly':[('state1','in',['envoye','retirer'])]}"/>
+                                    <field name="date_delivrance_piece_id_expediteur" required="1" attrs="{'invisible': [('id_piece_iden_expediteur','=',False)]}"/>
+                                    <field name="date_expiration_piece_id_expediteur" required="1" attrs="{'invisible': [('id_piece_iden_expediteur','=',False)]}"/>
+                                    <field name="num_piece_expediteur" required="1" attrs="{'readonly':[('state1','in',['envoye','retirer'])], 'invisible': [('id_piece_iden_expediteur','=',False)]}"/>
+                                </group>
+                                <group col="4" colspan="4" string="Information bénéficiare" >
+                                    <field name="id_beneficiaire" required="1" attrs="{'readonly':[('state1','in',['envoye','retirer'])]}"/>
+                                    <field name="prenom_beneficiaire" required="1" attrs="{'readonly':[('state1','in',['envoye','retirer'])]}"/>
+                                    <field name="Sexe_beneficiaire" required="1" attrs="{'readonly':[('state1','in',['envoye','retirer'])]}"/>
+                                    <field name="nationatile_beneficiaire" attrs="{'readonly':[('state1','in',['retirer'])], 'required':[('state1','in',['envoye'])],}" options="{'no_create': True}"/>
+                                    <field name="id_piece_iden_beneficiaire" attrs="{'readonly':[('state1','in',['retirer'])],'required':[('state1','in',['envoye'])]}"/>
+                                    <field name="tel_beneficiaire" required="1" attrs="{'readonly':[('state1','in',['envoye','retirer'])], }"/>
+                                    <field name="date_delivrance_piece_id_beneficiaire" required="1" attrs="{'invisible': [('id_piece_iden_beneficiaire','=',False)]}"/>
+                                    <field name="date_expiration_piece_id_beneficiaire" required="1" attrs="{'invisible': [('id_piece_iden_beneficiaire','=',False)]}"/>
+                                    <field name="num_piece_beneficiaire" attrs="{'readonly':[('state1','in',['retirer'])],'required':[('state1','in',['envoye'])], 'invisible': [('id_piece_iden_expediteur','=',False)]}"/>
+                                </group>
+                            </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="mp_transfert_model_action">
+            <field name="name">Envoi</field>
+            <field name="res_model">mp.transfert</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state1','in',['draft'])]</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="mp_historique_transfert_retrait_model_action">
+            <field name="name">Historique</field>
+            <field name="res_model">mp.transfert</field>
+            <field name="domain">[('state1','=','retirer')]</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+</odoo>
