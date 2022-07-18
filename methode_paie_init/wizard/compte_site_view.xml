@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+        <record model="ir.ui.view" id="view_mp_compte_site_filter">
+            <field name="name">Compte site</field>
+            <field name="model">mp.compte_site</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="num_compte"/>
+                    <field name="montant_init"/>
+                    <field name="montant_compte"/>
+                    <field name="id_site"/>
+                </search>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="mp_compte_site_view_tree">
+            <field name="name">Compte site</field>
+            <field name="model">mp.compte_site</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="num_compte"/>
+                    <field name="montant_init"/>
+                    <field name="montant_compte"/>
+                    <field name="id_site"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="mp_compte_site_view_form">
+            <field name="name">Compte site</field>
+            <field name="model">mp.compte_site</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="initialiser,confirmer"/>
+                    </header>
+                    <sheet>
+                        <group col='4' colspan="4">
+                            <field name="name" required="1"/>
+                            <field name="num_compte" required="1"/>
+                            <field name="montant_init" required="1" attrs="{'readonly':[('state','in',['confirmer'])]}"/>
+                            <field name="montant_compte" readonly="1"/>
+                            <field name="id_site" required="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+        <record model="ir.actions.act_window" id="mp_compte_site_model_action">
+            <field name="name">Compte site</field>
+            <field name="res_model">mp.compte_site</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+</odoo>

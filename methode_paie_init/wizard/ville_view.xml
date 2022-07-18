@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record model="ir.ui.view" id="mp_ville_view_tree">
+            <field name="name">mp.ville</field>
+            <field name="model">mp.ville</field>
+            <field name="arch" type="xml">
+                <tree string="Pays">
+                    <field name="name"/>
+                    <field name="id_pays"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mp_ville_view_form">
+            <field name="name">mp.ville</field>
+            <field name="model">mp.ville</field>
+            <field name="arch" type="xml">
+                <form string="Pays">
+                    <header>
+                    </header>
+                    <group>
+                        <sheet>
+                            <group>
+                                <field name="name" required="1"/>
+                                <field name="id_pays" required="1"/>
+                            </group>
+                        </sheet>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="ville_model_action" model="ir.actions.act_window">
+            <field name="name">ville</field>
+            <field name="res_model">mp.ville</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+</odoo>

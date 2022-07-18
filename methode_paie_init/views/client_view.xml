@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+        <record model="ir.ui.view" id="view_mp_client_filter">
+            <field name="name">Client</field>
+            <field name="model">mp.client</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="prenom"/>
+                    <field name="nationatile"/>
+                    <field name="sexe"/>
+                    <field name="id_piece_iden"/>
+                    <field name="num_piece"/>
+                </search>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="mp_client_view_tree">
+            <field name="name">Client</field>
+            <field name="model">mp.client</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="prenom"/>
+                    <field name="nationatile"/>
+                    <field name="sexe"/>
+                    <field name="tel"/>
+                    <field name="id_piece_iden"/>
+                    <field name="num_piece"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+        <record model="ir.ui.view" id="mp_client_expediteur_view_form">
+            <field name="name">Client</field>
+            <field name="model">mp.client</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                            <group col='4' colspan="4">
+                                <field name="name" required="1"/>
+                                <field name="prenom" required="1"/>
+                                <field name="sexe" required="1"/>
+                                <field name="tel" required="1"/>
+                            </group>
+                            <group string="Information sur la pièce d'identification" col='4' colspan="4">
+                               <field name="id_piece_iden" options="{'no_create': True}"/>
+                                <field name="nationatile" required="1"/>
+                                <field name="date_delivrance_piece_id" required="1" attrs="{'invisible': [('id_piece_iden','=',False)]}"/>
+                                <field name="num_piece" required="1" attrs="{'invisible': [('id_piece_iden','=',False)]}"/>
+                                <field name="date_expiration_piece_id" required="1" attrs="{'invisible': [('id_piece_iden','=',False)]}"/>
+                            </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+        <record model="ir.actions.act_window" id="mp_client_model_action">
+            <field name="name">Client</field>
+            <field name="res_model">mp.client</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+</odoo>
